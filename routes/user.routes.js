@@ -9,6 +9,18 @@ const jwt = require("jsonwebtoken");
 
 const userRoutes = express.Router();
 
+let authenticate=(req,res,next)=>{
+    try {
+        let decode = jwt.verify(req.headers.auth,process.env.USER)
+        if(decode){
+            next();
+            console.log("Yes")
+        } 
+    } catch (error) {
+        res.json({messege:"Session timeout login to add products"})
+    }
+}
+
 userRoutes.get('/product-display',async(req,res)=>{
     try {
         const connection = await mongoClient.connect(URL);
@@ -39,7 +51,7 @@ try {
 }
     });
 
-    userRoutes.post('/addToCart',async(req,res)=>{
+    userRoutes.post('/addToCart',authenticate,async(req,res)=>{
         try {
            const connection =await mongoClient.connect(URL) ;
            const db =connection.db(DB);
