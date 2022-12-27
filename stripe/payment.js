@@ -27,7 +27,7 @@ stripeRouter.post('/create-checkout-session', async (req, res) => {
         const session = await stripe.checkout.sessions.create({
         line_items,
           mode: 'payment',
-          success_url: 'http://localhost:3000/pay-success',
+          success_url: 'https://fullstcack-project-4-shoppy-backend.vercel.app/pay-success',
           cancel_url: 'http://localhost:4242/cancel',
         });
       

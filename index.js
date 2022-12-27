@@ -16,7 +16,7 @@ const app =express();
 app.use(express.json());
 
 app.use(cors({
-    origin:'*'
+    origin:'https://peaceful-begonia-8be3c5.netlify.app'
 }))
 
 app.use(stripePay);
