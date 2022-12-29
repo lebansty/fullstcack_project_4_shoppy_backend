@@ -40,10 +40,10 @@ try {
     let user = await db.collection("users").findOne({_id:mongodb.ObjectId(req.headers.id)});
     let admin= await db.collection("admin").findOne({_id:mongodb.ObjectId(req.headers.id)});
     if(user){
-        res.json({admin:false})
+        res.json({admin:false,user:true})
     }
     if(admin){
-        res.json({admin:true})
+        res.json({admin:true,user:false})
     }
     await connection.close()
 } catch (error) {
