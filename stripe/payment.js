@@ -27,11 +27,11 @@ stripeRouter.post('/create-checkout-session', async (req, res) => {
         const session = await stripe.checkout.sessions.create({
         line_items,
           mode: 'payment',
-          success_url: 'https://fullstcack-project-4-shoppy-backend.vercel.app/pay-success',
+          success_url: 'https://peaceful-begonia-8be3c5.netlify.app/pay-success',
           cancel_url: 'http://localhost:4242/cancel',
         });
       
-        res.send({url: session.url});
+        res.json({url: session.url});
     } catch (error) {
         console.log(error)
     }
